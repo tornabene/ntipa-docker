@@ -66,8 +66,6 @@ RUN cd /opt
 RUN mkdir java
 RUN mkdir devpublic
 RUN cd /opt/java
-RUN wget http://172.16.0.2:8080/swift/v1/ntipa/jdk-7u67-linux-x64.tar.gz
-RUN tar -xvf jdk-7u67-linux-x64.tar.gz
 RUN cd /opt/devpublic
 RUN wget http://172.16.0.2:8080/swift/v1/ntipa/ntipa-consumer-start.sh
 RUN cd /etc/supervisor/conf.d
