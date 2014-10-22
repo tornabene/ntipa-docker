@@ -56,7 +56,7 @@ RUN cd /opt
 RUN git clone https://github.com/gkovacs/pdfocr.git
 RUN cd /pdfocr
 RUN ln -s /tmp/pdfocr/pdfocr.rb /usr/bin/pdfocr
-RUN wget http://172.16.0.2:8080/swift/v1/ntipa/unoconvd.sh -P /etc/init.d/
+RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/unoconvd.sh -P /etc/init.d/
 RUN chmod 755 /etc/init.d/unoconvd.sh
 RUN update-rc.d  unoconvd.sh defaults
 RUN service unoconvd.sh start
@@ -67,13 +67,9 @@ RUN mkdir java
 RUN mkdir devpublic
 RUN cd /opt/java
 RUN cd /opt/devpublic
-RUN wget http://172.16.0.2:8080/swift/v1/ntipa/ntipa-consumer-start.sh
 RUN cd /etc/supervisor/conf.d
-RUN wget http://172.16.0.2:8080/swift/v1/ntipa/ntipaboxconsumer.conf
+RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipaboxconsumer.conf
 
-# expose the working directory, the Tomcat port, the Grunt server port, the SSHD port, and run SSHD
-VOLUME ["/opt"]
-EXPOSE 8080
-EXPOSE 9000
+# expose the SSHD port, and run SSHD
 EXPOSE 22
 CMD    /usr/sbin/sshd -D
