@@ -15,10 +15,9 @@ RUN apt-get -y install graphicsmagick
 RUN apt-get -y install graphicsmagick-imagemagick-compat
 RUN apt-get -y install build-essential
 RUN apt-get -y install checkinstall
-RUN apt-get -y install subversion
 RUN apt-get -y install autoconf automake libtool
 RUN apt-get -y install libjpeg62-dev
-RUN apt-get -y install libtiff5
+RUN apt-get -y install libtiff4
 RUN apt-get -y install tesseract-ocr-ita
 RUN apt-get -y install tesseract-ocr-eng
 RUN apt-get -y install libhocr0
@@ -47,6 +46,7 @@ RUN git clone https://github.com/gkovacs/pdfocr.git
 RUN cd /pdfocr
 RUN ln -s /tmp/pdfocr/pdfocr.rb /usr/bin/pdfocr
 
+#ntipa
 RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/unoconvd.sh -P /etc/init.d/
 RUN chmod 755 /etc/init.d/unoconvd.sh
 RUN update-rc.d  unoconvd.sh defaults
