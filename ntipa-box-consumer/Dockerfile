@@ -64,7 +64,10 @@ RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipa-b
 
 WORKDIR /opt
 RUN mkdir devpublic
+WORKDIR /opt/devpublic
+RUN wget http://git.ipublic.it:8081/nexus/service/local/repositories/ipublic/content/snapshots/com/ipublic/ntipa/ntipa-box-consumer/0.0.1-SNAPSHOT/ntipa-box-consumer-0.0.1-20141023.090124-4.war
 
 # expose the SSHD port, and run SSHD
 EXPOSE 22
+EXPOSE 8080
 CMD    /usr/sbin/sshd -D
