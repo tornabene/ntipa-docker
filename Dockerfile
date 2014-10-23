@@ -35,15 +35,16 @@ RUN apt-get -y install oracle-java7-installer && apt-get clean
 RUN update-java-alternatives -s java-7-oracle
 RUN echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> ~/.bashrc
 
-RUN cd /tmp	
-RUN git clone https://github.com/dagwieers/unoconv
-RUN cd unoconv/
+WORKDIR /opt
+
+RUN git clone https://github.com/dagwieers/unoconv 
+WORKDIR unoconv
+RUN pwd
+RUN ls
 RUN make install
-RUN cd ../
-RUN rm -rf unoconv/
-RUN cd /opt
+
 RUN git clone https://github.com/gkovacs/pdfocr.git
-RUN cd /pdfocr
+WORKDIR pdfocr
 RUN ln -s /tmp/pdfocr/pdfocr.rb /usr/bin/pdfocr
 
 #ntipa
@@ -51,17 +52,18 @@ RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/unoconv
 RUN chmod 755 /etc/init.d/unoconvd.sh
 RUN update-rc.d  unoconvd.sh defaults
 RUN service unoconvd.sh start
-RUN cd /opt
-RUN mkdir java
-RUN mkdir devpublic
-RUN cd /opt/java
-RUN cd /etc/supervisor/conf.d
-RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipaboxconsumer.conf
 
+
+WORKDIR /etc/supervisor/conf.d
+RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipaboxconsumer.conf
 
 #CONFIG HOST
 #RUN echo '10.10.130.33 mongo.ntipa.it rabbitmq.ntipa.it solr.ntipa.it  oauth.ntipa.it  manager.ntipa.it box.ntipa.it   camunda.ntipa.it   protocollo.ntipa.it' >> /etc/hosts
 #RUN echo '10.10.130.14 git.ipublic.it ' >> /etc/hosts
+#prepara per build
+
+WORKDIR /opt
+RUN mkdir devpublic
 
 # expose the SSHD port, and run SSHD
 EXPOSE 22
