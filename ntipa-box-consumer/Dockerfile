@@ -60,12 +60,11 @@ RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipa-b
 #CONFIG HOST
 #RUN echo '10.10.130.33 mongo.ntipa.it rabbitmq.ntipa.it solr.ntipa.it  oauth.ntipa.it  manager.ntipa.it box.ntipa.it   camunda.ntipa.it   protocollo.ntipa.it' >> /etc/hosts
 #RUN echo '10.10.130.14 git.ipublic.it ' >> /etc/hosts
-#prepara per build
 
 WORKDIR /opt
 RUN mkdir devpublic
 WORKDIR /opt/devpublic
-RUN wget http://git.ipublic.it:8081/nexus/service/local/repositories/ipublic/content/snapshots/com/ipublic/ntipa/ntipa-box-consumer/0.0.1-SNAPSHOT/ntipa-box-consumer-0.0.1-20141023.090124-4.war
+RUN wget http://10.10.130.14:8081/nexus/service/local/repositories/ipublic/content/snapshots/com/ipublic/ntipa/ntipa-box-consumer/0.0.1-SNAPSHOT/ntipa-box-consumer-0.0.1-20141023.090124-4.war
 
 # expose the SSHD port, and run SSHD
 EXPOSE 22
