@@ -64,7 +64,7 @@ RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipa-b
 WORKDIR /opt
 RUN mkdir devpublic
 WORKDIR /opt/devpublic
-RUN wget http://10.10.130.14:8081/nexus/service/local/repositories/ipublic/content/snapshots/com/ipublic/ntipa/ntipa-box-consumer/0.0.1-SNAPSHOT/ntipa-box-consumer-0.0.1-20141023.090124-4.war
+#RUN wget http://10.10.130.14:8081/nexus/service/local/repositories/ipublic/content/snapshots/com/ipublic/ntipa/ntipa-box-consumer/0.0.1-SNAPSHOT/ntipa-box-consumer-0.0.1-20141023.090124-4.war
 
 
 # configure the "ntipa" and "root" users
