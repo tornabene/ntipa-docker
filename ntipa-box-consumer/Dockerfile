@@ -48,14 +48,14 @@ WORKDIR pdfocr
 RUN ln -s /tmp/pdfocr/pdfocr.rb /usr/bin/pdfocr
 
 #ntipa
-RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/unoconvd.sh -P /etc/init.d/
+RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipa-box-consumer/unoconvd.sh -P /etc/init.d/
 RUN chmod 755 /etc/init.d/unoconvd.sh
 RUN update-rc.d  unoconvd.sh defaults
 RUN service unoconvd.sh start
 
 
 WORKDIR /etc/supervisor/conf.d
-RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipaboxconsumer.conf
+RUN wget https://raw.githubusercontent.com/tornabene/ntipa-docker/master/ntipa-box-consumer/ntipaboxconsumer.conf
 
 #CONFIG HOST
 #RUN echo '10.10.130.33 mongo.ntipa.it rabbitmq.ntipa.it solr.ntipa.it  oauth.ntipa.it  manager.ntipa.it box.ntipa.it   camunda.ntipa.it   protocollo.ntipa.it' >> /etc/hosts
